@@ -13,8 +13,8 @@ La aplicación permite a los usuarios seleccionar una ciudad desde un listado y 
 
 ## Requisitos
 
-- **Node.js** (versión 14 o superior)
-- **npm** (gestor de paquetes de Node.js)
+- **Node.js**: versión 14 o superior. Comprobar que lo tenemos instalado y su versión: `node -v`
+- **npm**: Gestor de paquetes de Node.js. Comprobar que lo tenemos instalado y su versión: `node -v`
 
 ## Tecnologías utilizadas
 
@@ -22,10 +22,13 @@ React, JavaScript, CSS, API: https://www.el-tiempo.net/api
 
 ## Instalación y arranque
 
+Windows y macOS:
+
 1. Clona este repositorio en tu máquina local
-2. Instala dependencias con el comando: npm install
-3. Navega al directorio del proyecto.
-4. Levanta el proyecto con el comando: npm start
+2. Comprueba que tienes instalado node (o instala desde aquí: https://nodejs.org/es)
+3. Instala dependencias con el comando: `npm install`
+4. Navega al directorio del proyecto.
+5. Levanta el proyecto con el comando: `npm start`
 
 ## Para cualquier duda puedes contactarme
 
