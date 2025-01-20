@@ -5,8 +5,6 @@ import { useNavigate } from "react-router-dom";
 import '../../styles/landing.css';
 import Header from "../../components/Header";
 
-
-
 const LandingPage = () => {
     const { getProvinces, getMunicipalities, getMunicipalityWeather } = useWeatherData();
     const { provinces, selectedProvince, setSelectedProvince,
@@ -14,6 +12,10 @@ const LandingPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        //Limpiamos datos para nuevas búsquedas
+        setSelectedProvince('')
+        setSelectedMunicip({})
+
         getProvinces();
     }, []);
 
@@ -71,7 +73,6 @@ const LandingPage = () => {
                     ))}
                 </select>
 
-                {/* añadimos un boton habilitado solo cuando haya seleccionado una provincia y un municipio */}
                 <button className="button form-item" disabled={!selectedProvince || !selectedMunicip?.id} onClick={handleSubmit}>Consultar</button>
             </main>
         </>
