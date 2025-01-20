@@ -8,7 +8,7 @@ import nieveIcon from '../../../images/icons/nieve.png';
 import defaultIcon from '../../../images/icons/default.png';
 import '../../../styles/weather.css';
 
-const WeatherIcon = ({ estadoCielo }) => {
+const WeatherIcon = ({ stateSky }) => {
 
     const icons = {
         11: despejadoIcon,   // Despejado
@@ -31,7 +31,7 @@ const WeatherIcon = ({ estadoCielo }) => {
         46: lluviaIcon     // Cubierto con lluvia escasa
     };
 
-    const imagen = icons[estadoCielo] || defaultIcon;
+    const imagen = icons[stateSky] || defaultIcon;
 
     return (
         <img src={imagen} alt={imagen} className='icon' />

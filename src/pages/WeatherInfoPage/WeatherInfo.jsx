@@ -8,11 +8,11 @@ import Error from '../WeatherInfoPage/components/Error.jsx';
 
 function WeatherInfo() {
   const { weatherData, selectedMunicip } = useWeatherContext();
-  const [estadoCielo, setEstadoCielo] = useState(null);
+  const [stateSky, setStateSky] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    setEstadoCielo(weatherData?.stateSky?.id);
+    setStateSky(weatherData?.stateSky?.id);
   }, []);
 
   const someError = !weatherData.temperatura_actual || !weatherData?.humedad
@@ -27,7 +27,7 @@ function WeatherInfo() {
 
         (<section className="weather-card">
           <article className="card-item">{weatherData?.stateSky?.description}
-            <WeatherIcon estadoCielo={estadoCielo} />
+            <WeatherIcon stateSky={stateSky} />
           </article>
 
           <article className="card-item">Temperatura actual
