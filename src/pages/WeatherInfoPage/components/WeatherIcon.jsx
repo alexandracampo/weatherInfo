@@ -27,6 +27,7 @@ const WeatherIcon = ({ estadoCielo }) => {
         24: lluviaIcon,      // Granizo
         25: nieblaIcon,      // Calima
         26: lluviaIcon,     // Cubierto con lluvia
+        44: lluviaIcon,     // Nuboso con lluvia escasa
         46: lluviaIcon     // Cubierto con lluvia escasa
     };
 
