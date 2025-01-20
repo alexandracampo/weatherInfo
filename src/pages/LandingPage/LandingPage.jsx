@@ -1,11 +1,17 @@
 import React, { useEffect } from "react";
 import { useWeatherData } from "../../services/useWeatherData";
 import { useWeatherContext } from "../../context/WeatherContext";
+import { useNavigate } from "react-router-dom";
+import '../../styles/landing.css';
+import Header from "../../components/Header";
+
+
 
 const LandingPage = () => {
     const { getProvinces, getMunicipalities, getMunicipalityWeather } = useWeatherData();
     const { provinces, selectedProvince, setSelectedProvince,
-        municipalities, selectedMunicip, setSelectedMunicip, weatherInfo } = useWeatherContext();
+        municipalities, selectedMunicip, setSelectedMunicip } = useWeatherContext();
+    const navigate = useNavigate();
 
     useEffect(() => {
         getProvinces();
@@ -13,16 +19,20 @@ const LandingPage = () => {
 
     const handleSelectProvince = (e) => {
         const selectedValue = e.target.value;
-        //almacenar el numero de provincia seleccionada
-        setSelectedProvince(selectedValue);
-        //Llamada a la api con ese codigo, al endpoint de municipios de esa provincia
-        getMunicipalities(selectedValue);
+        setSelectedProvince(selectedValue);   //almacenar el numero de provincia seleccionada
+        getMunicipalities(selectedValue);  //Llamada a la api con ese codigo, al endpoint de municipios de esa provincia
     };
 
     const handleSelectMunicip = (e) => {
-        const selectedValue = e.target.value; //id
-        setSelectedMunicip(selectedValue)
-    }
+        const selectedId = e.target.value;
+        const selectedMunicipality = municipalities.find(
+            (municip) => municip.id === selectedId
+        );
+        setSelectedMunicip({
+            id: selectedId,
+            name: selectedMunicipality ? selectedMunicipality.municipalityName : ''
+        });
+    };
 
 
     const handleSubmit = async () => {
@@ -30,43 +40,41 @@ const LandingPage = () => {
             return;
         }
         try {
-            await getMunicipalityWeather(selectedProvince, selectedMunicip);
-            //navega a la siguiente pagina donde se pintan los resultados del tiempo del municipio seleccionado
+            await getMunicipalityWeather(selectedProvince, selectedMunicip?.id);
+            navigate("/weather");
         } catch (error) {
             console.error("Error en la consulta del clima:", error);
         }
     };
 
-
     return (
-        <div className="container">
+        <>
+            <Header />
+            <main className="container" >
+                {/* Selector de provincia */}
+                <select className="select form-item" value={selectedProvince} onChange={handleSelectProvince} >
+                    <option value="" disabled>Selecciona un municipio</option>
+                    {provinces?.map((province, key) => (
+                        <option key={province?.provinceCode} value={province?.provinceCode} >
+                            {province.provinceName}
+                        </option>
+                    ))}
+                </select>
 
-            {/* Selector de provincia */}
-            <select className="select-province" value={selectedProvince} onChange={handleSelectProvince} >
-                <option value="" disabled>Selecciona un municipio</option>
-                {provinces?.map((province, key) => (
-                    <option key={province?.provinceCode} value={province?.provinceCode}>
-                        {province.provinceName}
-                    </option>
-                ))}
-            </select>
+                {/* Selector de municipio */}
+                <select className="select form-item" value={selectedMunicip?.id || ''} onChange={handleSelectMunicip} disabled={selectedProvince ? false : true}  >
+                    <option value="" disabled>Selecciona una provincia</option>
+                    {municipalities?.map((municip, key) => (
+                        <option key={key} value={municip?.id} >
+                            {municip?.municipalityName}
+                        </option>
+                    ))}
+                </select>
 
-
-            {/* mostramos el input disabled para buscar municipios si NO hay una provincia seleccionada */}
-
-            <select className="select-municip" value={selectedMunicip} onChange={handleSelectMunicip} disabled={selectedProvince ? false : true}  >
-                <option value="" disabled>Selecciona una provincia</option>
-                {municipalities?.map((municip, key) => (
-                    <option key={key} value={municip?.id}>
-                        {municip?.municipalityName}
-                    </option>
-                ))}
-            </select>
-
-
-            {/* añadimos un boton que estaba habilitado solo cuando haya seleccionado una provincia y un municipio */}
-            <button disabled={!selectedProvince || !selectedMunicip} onClick={handleSubmit}>Consultar</button>
-        </div>
+                {/* añadimos un boton habilitado solo cuando haya seleccionado una provincia y un municipio */}
+                <button className="button form-item" disabled={!selectedProvince || !selectedMunicip?.id} onClick={handleSubmit}>Consultar</button>
+            </main>
+        </>
     );
 };
 
