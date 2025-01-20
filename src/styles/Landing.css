@@ -29,3 +29,20 @@
 .form-item:hover {
     cursor: pointer;
 }
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        top: 0;
+        height: 100vh;
+    }
+
+    .form-item {
+        width: 80%;
+        margin-top: 10px;
+    }
+
+    .button {
+        width: 80%;
+    }
+}
