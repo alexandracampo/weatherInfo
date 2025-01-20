@@ -68,3 +68,13 @@
 .button-weatherinfo:hover {
     box-shadow: 0 14px 18px rgba(0, 0, 0, 0.2);
 }
+
+.error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top: 10rem;
+    font-weight: 700;
+    font-size: larger;
+}
