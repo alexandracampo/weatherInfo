@@ -1,8 +1,9 @@
 import React from 'react';
-import './styles/App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from './pages/LandingPage/LandingPage';
 import WeatherInfoPage from './pages/WeatherInfoPage/WeatherInfo';
+import Header from './components/Header';
+
 
 function App() {
 
