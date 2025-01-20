@@ -6,8 +6,11 @@ export const WeatherProvider = ({ children }) => {
     const [provinces, setProvinces] = useState(null);
     const [selectedProvince, setSelectedProvince] = useState(''); // endpoint: [CODPROV]
     const [municipalities, setMunicipalities] = useState(null)
-    const [selectedMunicip, setSelectedMunicip] = useState('') // endpoint: [ID] primeros cinco dígitos del campo CODIGOINE
-    const [weatherInfo, setWeatherInfo] = useState(null);
+    const [selectedMunicip, setSelectedMunicip] = useState({ // endpoint: [ID] primeros cinco dígitos del campo CODIGOINE
+        id: '',
+        name: ''
+    });
+    const [weatherData, setWeatherData] = useState({});
 
     return (
         <WeatherContext.Provider
@@ -20,8 +23,8 @@ export const WeatherProvider = ({ children }) => {
                 setMunicipalities,
                 selectedMunicip,
                 setSelectedMunicip,
-                weatherInfo,
-                setWeatherInfo,
+                weatherData,
+                setWeatherData,
             }}
         >
             {children}
