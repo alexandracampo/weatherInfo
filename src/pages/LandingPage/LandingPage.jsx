@@ -54,7 +54,7 @@ const LandingPage = () => {
             <Header />
             <main className="container" >
                 {/* Selector de provincia */}
-                <select className="select form-item" value={selectedProvince} onChange={handleSelectProvince} >
+                <select className="select form-item" value={selectedProvince} aria-label="Selecciona una provincia" onChange={handleSelectProvince} >
                     <option value="" disabled>Selecciona un municipio</option>
                     {provinces?.map((province, key) => (
                         <option key={province?.provinceCode} value={province?.provinceCode} >
@@ -64,7 +64,7 @@ const LandingPage = () => {
                 </select>
 
                 {/* Selector de municipio */}
-                <select className="select form-item" value={selectedMunicip?.id || ''} onChange={handleSelectMunicip} disabled={selectedProvince ? false : true}  >
+                <select className="select form-item" aria-label="Selecciona un municipio" value={selectedMunicip?.id || ''} onChange={handleSelectMunicip} disabled={selectedProvince ? false : true}  >
                     <option value="" disabled>Selecciona una provincia</option>
                     {municipalities?.map((municip, key) => (
                         <option key={key} value={municip?.id} >
@@ -73,7 +73,7 @@ const LandingPage = () => {
                     ))}
                 </select>
 
-                <button className="button form-item" disabled={!selectedProvince || !selectedMunicip?.id} onClick={handleSubmit}>Consultar</button>
+                <button className="button form-item" disabled={!selectedProvince || !selectedMunicip?.id} aria-disabled={!selectedProvince || !selectedMunicip?.id} onClick={handleSubmit}>Consultar</button>
             </main>
         </>
     );

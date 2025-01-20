@@ -18,9 +18,9 @@ function WeatherInfo() {
   return (
 
     <div className="weather-container">
-      <Header title2={selectedMunicip?.name} showTitle2></Header>
-      <section className="weather-card">
+      <Header title2={selectedMunicip?.name} showTitle2 />
 
+      <section className="weather-card">
         <article className="card-item">{weatherData?.stateSky?.description}
           <WeatherIcon estadoCielo={estadoCielo} />
         </article>
@@ -36,7 +36,7 @@ function WeatherInfo() {
       </section>
 
       <footer className='footer-weatherinfo'>
-        <button className='button-weatherinfo' onClick={() => navigate("/")} >Nueva búsqueda</button>
+        <button className='button-weatherinfo' aria-label="Volver a la página principal para hacer una nueva búsqueda" onClick={() => navigate("/")} >Nueva búsqueda</button>
       </footer>
     </div >
 
