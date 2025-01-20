@@ -3,20 +3,21 @@ import '../../styles/weather.css';
 import { useWeatherContext } from '../../context/WeatherContext';
 import WeatherIcon from './components/WeatherIcon.jsx';
 import Header from '../../components/Header.jsx';
-
+import { useNavigate } from "react-router-dom";
 
 function WeatherInfo() {
   const { weatherData, selectedMunicip } = useWeatherContext();
-
   const [estadoCielo, setEstadoCielo] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setEstadoCielo(weatherData?.stateSky?.id);
   }, []);
 
-  console.log(weatherData)
+  // console.log(weatherData)
   return (
-    <div div className="weather-container">
+
+    <div className="weather-container">
       <Header title2={selectedMunicip?.name} showTitle2></Header>
       <section className="weather-card">
 
@@ -33,7 +34,12 @@ function WeatherInfo() {
         </article>
 
       </section>
-    </div>
+
+      <footer className='footer-weatherinfo'>
+        <button className='button-weatherinfo' onClick={() => navigate("/")} >Nueva búsqueda</button>
+      </footer>
+    </div >
+
   );
 }
 
