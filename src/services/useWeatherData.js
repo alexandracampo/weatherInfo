@@ -1,7 +1,7 @@
 import { useWeatherContext } from "../context/WeatherContext";
 
 export const useWeatherData = () => {
-    const { setProvinces, setMunicipalities, setWeatherInfo } = useWeatherContext();
+    const { setProvinces, setMunicipalities, setWeatherData } = useWeatherContext();
 
     const getProvinces = async () => {
         try {
@@ -38,6 +38,15 @@ export const useWeatherData = () => {
         try {
             const response = await fetch(`https://www.el-tiempo.net/api/json/v2/provincias/${provinceCode}/municipios/${municipalityId}`);
             const municipalityWeather = await response.json();
+
+            // Extraer los datos necesarios
+            const { stateSky, temperatura_actual, temperaturas, humedad, proximos_dias } = municipalityWeather;
+
+            // Crear un objeto con los datos relevantes
+            const dataWeather = { stateSky, temperatura_actual, temperaturas, humedad, proximos_dias };
+
+            setWeatherData(dataWeather);
+
         } catch (error) {
             console.error("Error fetching weather:", error);
         }
