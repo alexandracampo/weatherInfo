@@ -9,11 +9,7 @@ La aplicación permite a los usuarios seleccionar una ciudad desde un listado y 
 
 - Consulta el clima actual por ciudad.
 - Interfaz de usuario sencilla y fácil de usar.
-- Compatible con múltiples navegadores:
-  Google Chrome
-  Mozilla Firefox
-  Microsoft Edge
-  Safari
+- Compatible con múltiples navegadores: Google Chrome, Mozilla Firefox, Microsoft Edge, Safari
 
 ## Requisitos
 
@@ -22,14 +18,11 @@ La aplicación permite a los usuarios seleccionar una ciudad desde un listado y 
 
 ## Tecnologías utilizadas
 
-React.
-JavaScript
-CSS
-API: el-tiempo.net
+React, JavaScript, CSS, API: https://www.el-tiempo.net/api
 
 ## Instalación y arranque
 
-1. clona este repositorio en tu máquina local
+1. Clona este repositorio en tu máquina local
 2. Instala dependencias con el comando: npm install
 3. Navega al directorio del proyecto.
 4. Levanta el proyecto con el comando: npm start
