@@ -6,18 +6,19 @@ import tormentaIcon from '../../../images/icons/tormenta.png';
 import nieblaIcon from '../../../images/icons/niebla.png';
 import nieveIcon from '../../../images/icons/nieve.png';
 import defaultIcon from '../../../images/icons/default.png';
+import solNubes from '../../../images/icons/solNubes.png';
 import '../../../styles/weather.css';
 
 const WeatherIcon = ({ stateSky }) => {
 
     const icons = {
         11: despejadoIcon, // Despejado (día y noche)
-        12: cubiertoIcon,  // Poco nuboso
+        12: solNubes,  // Poco nuboso
         13: cubiertoIcon,  // Nuboso
         14: cubiertoIcon,  // Muy nuboso
         15: cubiertoIcon,  // Cubierto
         16: cubiertoIcon,  // Nubes altas
-        17: cubiertoIcon,  // Intervalos nubosos
+        17: solNubes,  // Intervalos nubosos
         23: lluviaIcon,    // Llovizna (día y noche)
         24: lluviaIcon,    // Granizo
         25: nieblaIcon,    // Calima
@@ -46,7 +47,7 @@ const WeatherIcon = ({ stateSky }) => {
         82: nieblaIcon     // Niebla
     };
 
-    // Remover la letra 'n' al final del código si existe
+    // Eliminar la letra 'n' al final del código si existe
     const normalizedStateSky = stateSky?.replace('n', '');
 
     // Buscar el ícono correspondiente o usar el ícono por defecto
