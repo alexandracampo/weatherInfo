@@ -15,6 +15,7 @@ function WeatherInfo() {
     setStateSky(weatherData?.stateSky?.id);
   }, []);
 
+
   const someError = !weatherData.temperatura_actual || !weatherData?.humedad
 
   // console.log(weatherData)
