@@ -10,3 +10,11 @@
     align-items: center;
     justify-content: space-between;
 }
+
+@media (max-width: 554px) {
+    .header-container {
+        font-size: 1rem;
+        flex-direction: column;
+        margin-top: 1.5rem;
+    }
+}
