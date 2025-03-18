@@ -1,12 +1,12 @@
 import React from 'react';
-import despejadoIcon from '../../../images/icons/despejado.png';
-import cubiertoIcon from '../../../images/icons/cubierto.png';
-import lluviaIcon from '../../../images/icons/lluvia.png';
-import tormentaIcon from '../../../images/icons/tormenta.png';
-import nieblaIcon from '../../../images/icons/niebla.png';
-import nieveIcon from '../../../images/icons/nieve.png';
-import defaultIcon from '../../../images/icons/default.png';
-import solNubes from '../../../images/icons/solNubes.png';
+import despejadoIcon from 'despejado.png';
+import cubiertoIcon from 'cubierto.png';
+import lluviaIcon from 'lluvia.png';
+import tormentaIcon from 'tormenta.png';
+import nieblaIcon from 'niebla.png';
+import nieveIcon from 'nieve.png';
+import defaultIcon from 'default.png';
+import solNubes from 'solNubes.png';
 import '../../../styles/weather.css';
 
 const WeatherIcon = ({ stateSky }) => {
