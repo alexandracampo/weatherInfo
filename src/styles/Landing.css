@@ -26,8 +26,9 @@
     outline: none;
 }
 
-.form-item:hover {
+.form-item:not(:disabled):hover {
     cursor: pointer;
+    color: rgb(16, 84, 124);
 }
 
 @media (max-width: 768px) {
