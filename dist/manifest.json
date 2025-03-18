@@ -1,0 +1,12 @@
+{
+  "name": "WeatherInfo",
+  "short_name": "Clima",
+  "description": "Consulta el clima de tu ciudad de manera rápida y sencilla.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4CAF50",
+  "icons": [],
+  "scope": "/",
+  "orientation": "portrait"
+}
