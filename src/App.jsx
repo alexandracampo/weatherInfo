@@ -10,8 +10,8 @@ function App() {
     <Router>
       <Routes>
         <React.Fragment>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/weather" element={<WeatherInfoPage />} />
+          <Route path="/weather" element={<LandingPage />} />
+          <Route path="/weatherInfo" element={<WeatherInfoPage />} />
         </React.Fragment>
       </Routes>
     </Router>
