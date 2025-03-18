@@ -1,6 +1,5 @@
 {
   "name": "weatherinfo",
-  "homepage": "https: //github.com/alexandracampo/weatherInfo.git",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
