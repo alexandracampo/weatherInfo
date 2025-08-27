@@ -4,7 +4,7 @@ import { useWeatherContext } from "../../context/WeatherContext";
 import { useNavigate } from "react-router-dom";
 import '../../styles/landing.css';
 import Header from "../../components/Header";
-import { provinces } from "../../utils/provinces";
+import { provinces } from "./provinces";
 
 const LandingPage = () => {
     const { getMunicipalities, getMunicipalityWeather } = useWeatherData();
@@ -16,11 +16,11 @@ const LandingPage = () => {
         //Limpiamos datos para nuevas búsquedas
         setSelectedProvince('')
         setSelectedMunicip({})
-
     }, []);
 
     const handleSelectProvince = (e) => {
         const selectedValue = e.target.value;
+        console.log({ selectedValue })
         setSelectedProvince(selectedValue);   //almacenar el numero de provincia seleccionada
         getMunicipalities(selectedValue);  //Llamada a la api con ese codigo, al endpoint de municipios de esa provincia
     };
@@ -54,7 +54,7 @@ const LandingPage = () => {
             <main className="container" >
                 {/* Selector de provincia */}
                 <select className="select form-item" value={selectedProvince} aria-label="Selecciona una provincia" onChange={handleSelectProvince} >
-                    <option value="" disabled>Selecciona un municipio</option>
+                    <option value="" disabled>Selecciona una provincia</option>
                     {provinces?.map((province, key) => (
                         <option key={province?.code} value={province?.code} >
                             {province.name}
@@ -64,7 +64,7 @@ const LandingPage = () => {
 
                 {/* Selector de municipio */}
                 <select className="select form-item" aria-label="Selecciona un municipio" value={selectedMunicip?.id || ''} onChange={handleSelectMunicip} disabled={selectedProvince ? false : true}  >
-                    <option value="" disabled>Selecciona una provincia</option>
+                    <option value="" disabled>Selecciona un municipio</option>
                     {municipalities?.map((municip, key) => (
                         <option key={key} value={municip?.id} >
                             {municip?.municipalityName}

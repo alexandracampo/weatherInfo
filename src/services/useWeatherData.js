@@ -5,20 +5,6 @@ export const useWeatherData = () => {
 
     const API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGV4YW5kcmFjYW1wbzg2QGdtYWlsLmNvbSIsImp0aSI6ImNhYWMwZGI4LTJjZTQtNGEyYS04ZTBjLTU1ZDhkMTJhZjBjOSIsImlzcyI6IkFFTUVUIiwiaWF0IjoxNzU2Mjg2ODQwLCJ1c2VySWQiOiJjYWFjMGRiOC0yY2U0LTRhMmEtOGUwYy01NWQ4ZDEyYWYwYzkiLCJyb2xlIjoiIn0.qX9CivQGUOelXj7N5GAyzMnzOmNab18EnRgFBvUhuGw"
 
-    // const getProvinces = async () => {
-    // try {
-    //     const response = await fetch("https://www.el-tiempo.net/api/json/v2/provincias");
-    //     const provincesList = await response.json();
-    //     console.log({ provincesList })
-    //     setProvinces(provincesList?.provincias.map(province => ({
-    //         provinceCode: province?.CODPROV,
-    //         provinceName: province?.NOMBRE_PROVINCIA,
-    //     })));
-    // } catch (error) {
-    //     console.error("Error fetching provinces:", error);
-    // }
-    // };
-
     const getMunicipalities = async (provinceCode) => {
         if (!provinceCode) {
             setMunicipalities([]);
