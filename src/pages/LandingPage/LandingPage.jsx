@@ -1,13 +1,14 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useWeatherData } from "../../services/useWeatherData";
 import { useWeatherContext } from "../../context/WeatherContext";
 import { useNavigate } from "react-router-dom";
 import '../../styles/landing.css';
 import Header from "../../components/Header";
+import { provinces } from "../../utils/provinces";
 
 const LandingPage = () => {
-    const { getProvinces, getMunicipalities, getMunicipalityWeather } = useWeatherData();
-    const { provinces, selectedProvince, setSelectedProvince,
+    const { getMunicipalities, getMunicipalityWeather } = useWeatherData();
+    const { selectedProvince, setSelectedProvince,
         municipalities, selectedMunicip, setSelectedMunicip } = useWeatherContext();
     const navigate = useNavigate();
 
@@ -16,7 +17,6 @@ const LandingPage = () => {
         setSelectedProvince('')
         setSelectedMunicip({})
 
-        getProvinces();
     }, []);
 
     const handleSelectProvince = (e) => {
@@ -35,7 +35,6 @@ const LandingPage = () => {
             name: selectedMunicipality ? selectedMunicipality.municipalityName : ''
         });
     };
-
 
     const handleSubmit = async () => {
         if (!selectedProvince || !selectedMunicip) {
@@ -57,8 +56,8 @@ const LandingPage = () => {
                 <select className="select form-item" value={selectedProvince} aria-label="Selecciona una provincia" onChange={handleSelectProvince} >
                     <option value="" disabled>Selecciona un municipio</option>
                     {provinces?.map((province, key) => (
-                        <option key={province?.provinceCode} value={province?.provinceCode} >
-                            {province.provinceName}
+                        <option key={province?.code} value={province?.code} >
+                            {province.name}
                         </option>
                     ))}
                 </select>
