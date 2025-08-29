@@ -7,7 +7,7 @@ import Header from "../../components/Header";
 import { provinces } from "./provinces";
 
 const LandingPage = () => {
-    const { getMunicipalities, getMunicipalityWeather } = useWeatherData();
+    const { getDataMunicipality, getMunicipalityWeather } = useWeatherData();
     const { selectedProvince, setSelectedProvince,
         municipalities, selectedMunicip, setSelectedMunicip } = useWeatherContext();
     const navigate = useNavigate();
@@ -20,9 +20,8 @@ const LandingPage = () => {
 
     const handleSelectProvince = (e) => {
         const selectedValue = e.target.value;
-        console.log({ selectedValue })
         setSelectedProvince(selectedValue);   //almacenar el numero de provincia seleccionada
-        getMunicipalities(selectedValue);  //Llamada a la api con ese codigo, al endpoint de municipios de esa provincia
+        getDataMunicipality(selectedValue);  //Llamada a la api con ese codigo, al endpoint de municipios de esa provincia
     };
 
     const handleSelectMunicip = (e) => {
