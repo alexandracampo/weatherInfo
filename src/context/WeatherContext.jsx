@@ -4,8 +4,8 @@ const WeatherContext = createContext();
 
 export const WeatherProvider = ({ children }) => {
     const [provinces, setProvinces] = useState(null);
-    const [selectedProvince, setSelectedProvince] = useState(''); // endpoint: [CODPROV]
-    const [municipalities, setMunicipalities] = useState(null)
+    const [selectedProvince, setSelectedProvince] = useState('');
+    const [municipalities, setMunicipalities] = useState([])
     const [selectedMunicip, setSelectedMunicip] = useState({ // endpoint: [ID] primeros cinco dígitos del campo CODIGOINE
         id: '',
         name: ''

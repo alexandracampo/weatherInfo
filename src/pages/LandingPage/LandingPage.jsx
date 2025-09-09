@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useWeatherData } from "../../services/useWeatherData";
 import { useWeatherContext } from "../../context/WeatherContext";
 import { useNavigate } from "react-router-dom";
@@ -26,7 +26,7 @@ const LandingPage = () => {
 
     const handleSelectMunicip = (e) => {
         const selectedId = e.target.value;
-        const selectedMunicipality = municipalities.find(
+        const selectedMunicipality = municipalities?.find(
             (municip) => municip.id === selectedId
         );
         setSelectedMunicip({
@@ -40,7 +40,8 @@ const LandingPage = () => {
             return;
         }
         try {
-            await getMunicipalityWeather(selectedProvince, selectedMunicip?.id);
+            const ineCode = selectedProvince + selectedMunicip.id
+            await getMunicipalityWeather(ineCode);
             navigate("/weather");
         } catch (error) {
             console.error("Error en la consulta del clima:", error);

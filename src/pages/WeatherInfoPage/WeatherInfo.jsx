@@ -18,7 +18,7 @@ function WeatherInfo() {
 
   const someError = !weatherData.temperatura_actual || !weatherData?.humedad
 
-  // console.log(weatherData)
+  console.log({ weatherData })
   return (
 
     <div className="weather-container">
