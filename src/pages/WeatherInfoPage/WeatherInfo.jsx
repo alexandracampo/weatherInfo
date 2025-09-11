@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import '../../styles/weather.css';
 import { useWeatherContext } from '../../context/WeatherContext';
 import WeatherIcon from './components/WeatherIcon.jsx';
@@ -8,17 +7,27 @@ import Error from '../WeatherInfoPage/components/Error.jsx';
 
 function WeatherInfo() {
   const { weatherData, selectedMunicip } = useWeatherContext();
-  const [stateSky, setStateSky] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setStateSky(weatherData?.stateSky?.id);
-  }, []);
+  const someError = !weatherData
+  const currentHour = new Date().getHours();
 
+  // Estado cielo:
+  const skyData = weatherData.estadoCielo
+  const currentHourSkyData = skyData.find(obj => Number(obj.periodo) === currentHour)
+  const skyCode = currentHourSkyData.value
+  const skyDescription = currentHourSkyData.descripcion
 
-  const someError = !weatherData.temperatura_actual || !weatherData?.humedad
+  // Temperatura:
+  const temperatureData = weatherData.temperatura
+  const currentTemperatureData = temperatureData.find(obj => Number(obj.periodo) === currentHour)
+  const temperature = currentTemperatureData.value
 
-  console.log({ weatherData })
+  // Humedad:
+  const humidityData = weatherData.humedadRelativa
+  const currentDataObj = humidityData.find(obj => Number(obj.periodo) === currentHour)
+  const humidity = currentDataObj.value
+
   return (
 
     <div className="weather-container">
@@ -27,16 +36,16 @@ function WeatherInfo() {
       {someError ? <Error /> :
 
         (<section className="weather-card">
-          <article className="card-item">{weatherData?.stateSky?.description}
-            <WeatherIcon stateSky={stateSky} />
+          <article className="card-item">{skyDescription}
+            <WeatherIcon stateSky={skyCode} />
           </article>
 
           <article className="card-item">Temperatura actual
-            <h1>{weatherData?.temperatura_actual ? `${weatherData.temperatura_actual}ºC` : '-'}</h1>
+            <h1>{temperature ? `${temperature}ºC` : '-'}</h1>
           </article>
 
           <article className="card-item">Humedad
-            <h1>{weatherData?.humedad ? `${weatherData?.humedad}%` : '-'}</h1>
+            <h1>{humidity ? `${humidity}%` : '-'}</h1>
           </article>
 
         </section>)}

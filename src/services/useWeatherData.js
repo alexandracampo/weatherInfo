@@ -5,7 +5,7 @@ export const useWeatherData = () => {
     const { setMunicipalities, setWeatherData } = useWeatherContext();
     const AEMET_API_KEY = import.meta.env.VITE_AEMET_API_KEY;
 
-    // Obtener listado de municipios (almacenados en bbdd en MongoDB) mediante código de provincia
+    // Obtener listado de municipios (almacenados en bbdd en MongoDB) mediante código de provincia:
     const getDataMunicipality = async (codProv) => {
         fetch(`https://weather-backend-dlk4.onrender.com/municipios/${codProv}`)
             .then(res => res.json())
@@ -19,25 +19,7 @@ export const useWeatherData = () => {
             .catch(err => console.error(err));
     }
 
-    // const getMunicipalityWeather = async (codigoMunicipio) => {
-    //     try {
-    //         const response = await fetch(`https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/horaria/${codigoMunicipio}`);
-    //         const municipalityWeather = await response.json();
-
-    //         // Extraer los datos necesarios
-    //         const { stateSky, temperatura_actual, temperaturas, humedad, proximos_dias } = municipalityWeather;
-
-    //         // Crear un objeto con los datos relevantes
-    //         const dataWeather = { stateSky, temperatura_actual, temperaturas, humedad, proximos_dias };
-
-    //         setWeatherData(dataWeather);
-
-    //     } catch (error) {
-    //         console.error("Error fetching weather:", error);
-    //     }
-    // };
-
-    // Obtener el tiempo actual por municipios de la api de aemet
+    // Obtener el tiempo actual por municipios de la api de la AEMET:
     const getMunicipalityWeather = async (ineCode) => {
         try {
             // Primera llamada → devuelve JSON con URL "datos"
@@ -62,9 +44,6 @@ export const useWeatherData = () => {
                 prediction = rawData; // si es XML
             }
 
-            // Así accedemos a los datos del día de hoy:
-            const currentHour = new Date().getHours();
-            console.log(currentHour)
             const dataWeather = prediction[0].prediccion.dia[0]
             setWeatherData(dataWeather)
 
