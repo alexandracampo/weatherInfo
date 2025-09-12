@@ -1,49 +1,120 @@
+/* Contenedor principal */
 .container {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    top: -20%;
-    height: 100vh;
+    min-height: 100vh;
     background-image: url('../images/background1.jpg');
-    background-repeat: no-repeat;
     background-size: cover;
-    opacity: 0.7;
+    background-position: center;
+    padding: 2rem;
     font-family: 'Montserrat', sans-serif;
+    color: #333;
 }
 
-.form-item {
-    margin-right: 5px;
-    margin-left: 0px;
-    margin-top: -10%;
+/* titulo presentación */
+.app-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    padding: 10px 15px;
-    border-radius: 8px;
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 5rem;
+    background: linear-gradient(90deg, #10847c, #C53678);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+    display: inline-block;
+    animation: slideIn 0.8s ease-out forwards;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .app-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+}
+
+
+/* Selects y botones */
+.form-item {
+    margin: 10px 0;
+    font-size: 1rem;
+    padding: 12px 16px;
+    border-radius: 10px;
     border: 1px solid #ccc;
-    background-color: #f9f9f9;
-    width: 250px;
+    background-color: rgba(249, 249, 249, 0.9);
+    width: 280px;
     height: 45px;
     outline: none;
+    transition: all 0.2s ease;
+}
+
+.form-item:focus {
+    border-color: #10847c;
+    box-shadow: 0 0 5px rgba(16, 132, 124, 0.4);
 }
 
 .form-item:not(:disabled):hover {
     cursor: pointer;
-    color: rgb(16, 84, 124);
+    color: #10847c;
 }
 
+/* Botón consultar */
+.button.form-item {
+    background-color: #10847c;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button.form-item:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.button.form-item:hover:not(:disabled) {
+    background-color: #0d6f63;
+    transform: translateY(-2px);
+}
+
+/* Opción de select por defecto */
+select option[disabled] {
+    color: #888;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
     .container {
-        flex-direction: column;
-        top: 0;
-        height: 100vh;
+        padding: 1rem;
     }
 
     .form-item {
-        width: 80%;
-        margin-top: 10px;
+        width: 70%;
     }
 
-    .button {
-        width: 80%;
+    .button.form-item {
+        width: 70%;
     }
 }

@@ -1,4 +1,3 @@
-import React from 'react';
 import '../styles/header.css';
 
 function Header({ title2, showTitle2 = true }) {

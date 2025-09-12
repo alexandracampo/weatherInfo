@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useWeatherData } from "../../services/useWeatherData";
 import { useWeatherContext } from "../../context/WeatherContext";
 import { useNavigate } from "react-router-dom";
@@ -19,6 +19,9 @@ const LandingPage = () => {
     }, []);
 
     const handleSelectProvince = (e) => {
+        setSelectedProvince('')
+        setSelectedMunicip({})
+
         const selectedValue = e.target.value;
         setSelectedProvince(selectedValue);   //almacenar el numero de provincia seleccionada
         getDataMunicipality(selectedValue);  //Llamada a la api con ese codigo, al endpoint de municipios de esa provincia
@@ -57,17 +60,22 @@ const LandingPage = () => {
             return <option value="" disabled>Selecciona un municipio</option>;
         }
 
-        return municipalities.map((municip, key) => (
-            <option key={key} value={municip.id}>
-                {municip.municipalityName}
-            </option>
-        ));
+        return (
+            <>
+                <option value="" disabled>Selecciona un municipio</option>
+                {municipalities.map((municip, key) => (
+                    <option key={key} value={municip.id}>
+                        {municip.municipalityName}
+                    </option>
+                ))}
+            </>
+        );
     };
 
     return (
         <>
-            <Header />
             <main className="container" >
+                <h1 className="app-title">WeatherInfo</h1>
                 {/* Selector de provincia */}
                 <select className="select form-item" value={selectedProvince} aria-label="Selecciona una provincia" onChange={handleSelectProvince} >
                     <option value="" disabled>Selecciona una provincia</option>
@@ -81,12 +89,6 @@ const LandingPage = () => {
                 {/* Selector de municipio */}
                 <select className="select form-item" aria-label="Selecciona un municipio" value={selectedMunicip?.id || ''} onChange={handleSelectMunicip} disabled={!selectedProvince}  >
                     {renderMunicipalityOptions()}
-                    {/* <option value="" disabled>Selecciona un municipio</option>
-                    {municipalities?.map((municip, key) => (
-                        <option key={key} value={municip?.id} >
-                            {municip?.municipalityName}
-                        </option>
-                    ))} */}
                 </select>
 
                 <button className="button form-item" disabled={!selectedProvince || !selectedMunicip?.id} aria-disabled={!selectedProvince || !selectedMunicip?.id} onClick={handleSubmit}>Consultar</button>
