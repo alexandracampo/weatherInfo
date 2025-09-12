@@ -11,6 +11,7 @@ export const WeatherProvider = ({ children }) => {
         name: ''
     });
     const [weatherData, setWeatherData] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
 
     return (
         <WeatherContext.Provider
@@ -25,6 +26,8 @@ export const WeatherProvider = ({ children }) => {
                 setSelectedMunicip,
                 weatherData,
                 setWeatherData,
+                isLoading,
+                setIsLoading
             }}
         >
             {children}

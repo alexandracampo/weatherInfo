@@ -9,7 +9,7 @@ import { provinces } from "./provinces";
 const LandingPage = () => {
     const { getDataMunicipality, getMunicipalityWeather } = useWeatherData();
     const { selectedProvince, setSelectedProvince,
-        municipalities, selectedMunicip, setSelectedMunicip } = useWeatherContext();
+        municipalities, selectedMunicip, setSelectedMunicip, isLoading } = useWeatherContext();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -48,6 +48,22 @@ const LandingPage = () => {
         }
     };
 
+    const renderMunicipalityOptions = () => {
+        if (isLoading) {
+            return <option value="" disabled>Cargando datos...</option>;
+        }
+
+        if (!municipalities?.length) {
+            return <option value="" disabled>Selecciona un municipio</option>;
+        }
+
+        return municipalities.map((municip, key) => (
+            <option key={key} value={municip.id}>
+                {municip.municipalityName}
+            </option>
+        ));
+    };
+
     return (
         <>
             <Header />
@@ -63,13 +79,14 @@ const LandingPage = () => {
                 </select>
 
                 {/* Selector de municipio */}
-                <select className="select form-item" aria-label="Selecciona un municipio" value={selectedMunicip?.id || ''} onChange={handleSelectMunicip} disabled={selectedProvince ? false : true}  >
-                    <option value="" disabled>Selecciona un municipio</option>
+                <select className="select form-item" aria-label="Selecciona un municipio" value={selectedMunicip?.id || ''} onChange={handleSelectMunicip} disabled={!selectedProvince}  >
+                    {renderMunicipalityOptions()}
+                    {/* <option value="" disabled>Selecciona un municipio</option>
                     {municipalities?.map((municip, key) => (
                         <option key={key} value={municip?.id} >
                             {municip?.municipalityName}
                         </option>
-                    ))}
+                    ))} */}
                 </select>
 
                 <button className="button form-item" disabled={!selectedProvince || !selectedMunicip?.id} aria-disabled={!selectedProvince || !selectedMunicip?.id} onClick={handleSubmit}>Consultar</button>

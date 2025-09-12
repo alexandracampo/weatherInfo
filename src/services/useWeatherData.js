@@ -2,23 +2,26 @@ import { useEffect } from "react";
 import { useWeatherContext } from "../context/WeatherContext";
 
 export const useWeatherData = () => {
-    const { setMunicipalities, setWeatherData } = useWeatherContext();
+    const { setMunicipalities, setWeatherData, setIsLoading } = useWeatherContext();
     const AEMET_API_KEY = import.meta.env.VITE_AEMET_API_KEY;
 
     // Obtener listado de municipios (almacenados en bbdd en MongoDB) mediante código de provincia:
     const getDataMunicipality = async (codProv) => {
-        fetch(`https://weather-backend-dlk4.onrender.com/municipios/${codProv}`)
-            .then(res => res.json())
-            .then(data => {
-                const cleanMunicipalities = data.map(municip => ({
-                    id: municip.CMUN,
-                    municipalityName: municip.NOMBRE
-                }));
-                setMunicipalities(cleanMunicipalities);
-            })
-            .catch(err => console.error(err));
+        try {
+            setIsLoading(true)
+            const res = await fetch(`https://weather-backend-dlk4.onrender.com/municipios/${codProv}`)
+            const data = await res.json();
+            const cleanMunicipalities = data.map(municip => ({
+                id: municip.CMUN,
+                municipalityName: municip.NOMBRE
+            }));
+            setMunicipalities(cleanMunicipalities);
+        } catch (err) {
+            console.error("Error obteniendo municipios:", err);
+        } finally {
+            setIsLoading(false);
+        }
     }
-
     // Obtener el tiempo actual por municipios de la api de la AEMET:
     const getMunicipalityWeather = async (ineCode) => {
         try {
@@ -46,8 +49,6 @@ export const useWeatherData = () => {
 
             const dataWeather = prediction[0].prediccion.dia[0]
             setWeatherData(dataWeather)
-
-            return prediction;
         } catch (error) {
             console.error("Error obteniendo la predicción horaria:", error);
             return null;
