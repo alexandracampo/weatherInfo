@@ -16,8 +16,14 @@ La app combina datos de la API de AEMET con un servicio propio desplegado en Ren
 ## 🛠️ Tecnologías utilizadas
 
 - Frontend: React (con Vite), JavaScript, CSS puro.
+
 - **Backend propio**: Node.js + Express, MongoDB (desplegado en Render).
+
+  - Expone un servicio REST que devuelve los municipios asociados a una provincia mediante su código.
+  - Los datos de municipios están almacenados en MongoDB y sirven para poblar el desplegable en el frontend.
+
 - API de clima: [AEMET OpenData](https://opendata.aemet.es/centrodedescargas/inicio)
+  - El backend de AEMET provee los datos climáticos en tiempo real. La aplicación consulta esta API para obtener el pronóstico actual del municipio seleccionado.
 
 ## ⚙️ Requisitos
 
