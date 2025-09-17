@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-image: url('../images/background1.jpg');
+    background-image: url('../images/background3.webp');
     background-size: cover;
     background-position: center;
     font-family: 'Montserrat', sans-serif;
@@ -19,7 +19,7 @@
     max-width: 450px;
     padding: 20px 25px;
     margin: 1.5rem 0;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.33);
     /* Fondo claro semi-transparente */
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);

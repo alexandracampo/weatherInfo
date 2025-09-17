@@ -4,7 +4,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(255, 255, 255, 0.327);
     /* Fondo semi-transparente */
     backdrop-filter: blur(6px);
     /* Efecto blur moderno */
