@@ -12,6 +12,7 @@ export const WeatherProvider = ({ children }) => {
     });
     const [weatherData, setWeatherData] = useState({});
     const [isLoading, setIsLoading] = useState(false);
+    const [isLoadingWeather, setIsLoadingWeather] = useState(false);
 
     return (
         <WeatherContext.Provider
@@ -27,7 +28,9 @@ export const WeatherProvider = ({ children }) => {
                 weatherData,
                 setWeatherData,
                 isLoading,
-                setIsLoading
+                setIsLoading,
+                isLoadingWeather,
+                setIsLoadingWeather
             }}
         >
             {children}

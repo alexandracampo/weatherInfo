@@ -13,20 +13,20 @@ function WeatherInfo() {
   const currentHour = new Date().getHours();
 
   // Estado cielo:
-  const skyData = weatherData.estadoCielo
+  const skyData = weatherData?.estadoCielo
   const currentHourSkyData = skyData?.find(obj => Number(obj.periodo) === currentHour)
-  const skyCode = currentHourSkyData.value
-  const skyDescription = currentHourSkyData.descripcion
+  const skyCode = currentHourSkyData?.value
+  const skyDescription = currentHourSkyData?.descripcion
 
   // Temperatura:
   const temperatureData = weatherData.temperatura
-  const currentTemperatureData = temperatureData.find(obj => Number(obj.periodo) === currentHour)
-  const temperature = currentTemperatureData.value
+  const currentTemperatureData = temperatureData?.find(obj => Number(obj.periodo) === currentHour)
+  const temperature = currentTemperatureData?.value
 
   // Humedad:
-  const humidityData = weatherData.humedadRelativa
-  const currentDataObj = humidityData.find(obj => Number(obj.periodo) === currentHour)
-  const humidity = currentDataObj.value
+  const humidityData = weatherData?.humedadRelativa
+  const currentDataObj = humidityData?.find(obj => Number(obj.periodo) === currentHour)
+  const humidity = currentDataObj?.value
 
   return (
     <>

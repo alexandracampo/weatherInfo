@@ -3,13 +3,14 @@ import { useWeatherData } from "../../services/useWeatherData";
 import { useWeatherContext } from "../../context/WeatherContext";
 import { useNavigate } from "react-router-dom";
 import '../../styles/landing.css';
-import Header from "../../components/Header";
+import Lottie from "lottie-react";
+import loadingAnimation from "../../images/Sandy-loading.json";
 import { provinces } from "./provinces";
 
 const LandingPage = () => {
     const { getDataMunicipality, getMunicipalityWeather } = useWeatherData();
     const { selectedProvince, setSelectedProvince,
-        municipalities, selectedMunicip, setSelectedMunicip, isLoading } = useWeatherContext();
+        municipalities, selectedMunicip, setSelectedMunicip, isLoading, isLoadingWeather, setIsLoadingWeather } = useWeatherContext();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -43,11 +44,14 @@ const LandingPage = () => {
             return;
         }
         try {
+            setIsLoadingWeather(true)
             const ineCode = selectedProvince + selectedMunicip.id
             await getMunicipalityWeather(ineCode);
             navigate("/weather");
         } catch (error) {
             console.error("Error en la consulta del clima:", error);
+        } finally {
+            setIsLoadingWeather(false)
         }
     };
 
@@ -77,21 +81,36 @@ const LandingPage = () => {
             <main className="container" >
                 <h1 className="app-title">WeatherInfo</h1>
                 {/* Selector de provincia */}
-                <select className="select form-item" value={selectedProvince} aria-label="Selecciona una provincia" onChange={handleSelectProvince} >
-                    <option value="" disabled>Selecciona una provincia</option>
-                    {provinces?.map((province, key) => (
-                        <option key={province?.code} value={province?.code} >
-                            {province.name}
-                        </option>
-                    ))}
-                </select>
 
-                {/* Selector de municipio */}
-                <select className="select form-item" aria-label="Selecciona un municipio" value={selectedMunicip?.id || ''} onChange={handleSelectMunicip} disabled={!selectedProvince}  >
-                    {renderMunicipalityOptions()}
-                </select>
+                {isLoadingWeather ? (
+                    <Lottie
+                        animationData={loadingAnimation}
+                        loop={true}
+                        style={{ width: 150, height: 150 }}
+                    />
+                )
+                    :
+                    (
+                        <>
+                            <select className="select form-item" value={selectedProvince} aria-label="Selecciona una provincia" onChange={handleSelectProvince} >
+                                <option value="" disabled>Selecciona una provincia</option>
+                                {provinces?.map((province, key) => (
+                                    <option key={province?.code} value={province?.code} >
+                                        {province.name}
+                                    </option>
+                                ))}
+                            </select>
 
-                <button className="button form-item" disabled={!selectedProvince || !selectedMunicip?.id} aria-disabled={!selectedProvince || !selectedMunicip?.id} onClick={handleSubmit}>Consultar</button>
+                            {/* Selector de municipio */}
+                            <select className="select form-item" aria-label="Selecciona un municipio" value={selectedMunicip?.id || ''} onChange={handleSelectMunicip} disabled={!selectedProvince}  >
+                                {renderMunicipalityOptions()}
+                            </select>
+
+                            <button className="button form-item" disabled={!selectedProvince || !selectedMunicip?.id} aria-disabled={!selectedProvince || !selectedMunicip?.id} onClick={handleSubmit}>Consultar</button>
+                        </>
+                    )}
+
+
             </main>
         </>
     );
