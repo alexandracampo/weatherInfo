@@ -51,7 +51,6 @@ export const useWeatherData = () => {
             setWeatherData(dataWeather)
         } catch (error) {
             console.error("Error obteniendo la predicción horaria:", error);
-            console.log({ error })
             return null;
         }
     };

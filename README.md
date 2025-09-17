@@ -1,8 +1,8 @@
-# Aplicación de Clima
+# Consulta El Tiempo 🌦
 
 ## 📖 Descripción
 
-WeatherInfo es una aplicación web que permite consultar el clima actual en los municipios de España.
+WeatherInfo es una aplicación web que permite consultar el tiempo actual en los municipios de España.
 La aplicación ofrece una interfaz minimalista y moderna para que los usuarios puedan seleccionar su provincia y municipio, y obtener información meteorológica en tiempo real.
 
 La app combina datos de la API de AEMET con un servicio propio desplegado en Render, que facilita la consulta de municipios a partir de los códigos de provincia.
