@@ -8,6 +8,7 @@
     background-position: center;
     color: #333;
     padding: 1.5rem;
+    min-height: 100vh;
 }
 
 .weather-card {
@@ -17,7 +18,8 @@
     width: 90%;
     max-width: 450px;
     padding: 20px 25px;
-    margin: 1.5rem 0;
+    /* margin: 1.5rem 0; */
+    margin-bottom: 1.5rem;
     border-radius: 15px;
 }
 
@@ -111,27 +113,32 @@ p {
     }
 
     .icon {
-        width: 6rem;
+        width: 4rem;
     }
 
     .error {
         font-size: 1.5rem;
     }
 
-    .sub-card {
-        flex-direction: column;
-    }
 
     .sub-card-item {
-        border: 1px rgba(255, 255, 255, 0.293) solid;
+        width: 5rem;
     }
 
 
 }
 
 @media (max-width: 360px) {
-    .icon {
+    p {
+        font-size: 0.8rem;
+    }
 
-        width: 4rem;
+    .icon {
+        width: 3rem;
+    }
+
+    .sub-card-item {
+        border: none;
+        width: 5rem;
     }
 }

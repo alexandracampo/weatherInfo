@@ -7,9 +7,9 @@ import Error from '../WeatherInfoPage/components/Error.jsx';
 import NextDaysWeather from './components/NextDaysWeather.jsx';
 
 function WeatherInfo() {
-  const { weatherDataNow, selectedMunicip, weatherDataDay1, weatherDataDay2 } = useWeatherContext();
+  const { weatherDataNow, selectedMunicip, weatherDataDay1 } = useWeatherContext();
   const navigate = useNavigate();
-
+  console.log(weatherDataNow)
   const someError = !weatherDataNow
   const currentHour = new Date().getHours();
 
@@ -29,8 +29,6 @@ function WeatherInfo() {
   const currentDataObj = humidityData?.find(obj => Number(obj.periodo) === currentHour)
   const humidity = currentDataObj?.value
 
-
-  console.log({ weatherDataDay1 })
   return (
     <>
       {someError ? <Error /> : (

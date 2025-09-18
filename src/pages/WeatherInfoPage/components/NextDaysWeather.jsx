@@ -6,15 +6,18 @@ import WeatherIcon from './WeatherIcon';
 
 function NextDaysWeather({ weatherInfoData }) {
 
-    // const { weatherDataDay1, weatherDataDay2 } = useWeatherContext();
-
-    //Datos para mañana:
     const today = new Date();
     const days = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
     const tomorrow = new Date();
     tomorrow.setDate(today.getDate() + 1);
     const tomorrowName = days[tomorrow.getDay()];
     const tomorrowNumber = tomorrow.getDate()
+
+    // Si tuviéramos que mostrar info de pasado mañana:
+    // const dayAfterTomorrow = new Date();
+    // dayAfterTomorrow.setDate(today.getDate() + 2);
+    // const dayAfterTomorrowName = days[dayAfterTomorrow.getDay()];
+    // const dayAfterTomorrowNumber = dayAfterTomorrow.getDate();
 
     const tomorrow6 = weatherInfoData?.estadoCielo.find(obj => obj.periodo === '06');
     const tomorrowSky6 = tomorrow6?.value
@@ -24,13 +27,6 @@ function NextDaysWeather({ weatherInfoData }) {
 
     const tomorrow18 = weatherInfoData?.estadoCielo.find(obj => obj.periodo === '18');
     const tomorrowSky18 = tomorrow18?.value
-
-    // Datos para PASADO mañana:
-    // const dayAfterTomorrow = new Date();
-    // dayAfterTomorrow.setDate(today.getDate() + 2);
-    // const dayAfterTomorrowName = days[dayAfterTomorrow.getDay()];
-    // const dayAfterTomorrowNumber = dayAfterTomorrow.getDate();
-
 
     return (
         <article className="card-item">
