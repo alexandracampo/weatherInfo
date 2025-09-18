@@ -10,7 +10,9 @@ export const WeatherProvider = ({ children }) => {
         id: '',
         name: ''
     });
-    const [weatherData, setWeatherData] = useState({});
+    const [weatherDataNow, setWeatherDataNow] = useState({});
+    const [weatherDataDay1, setWeatherDataDay1] = useState({});
+    const [weatherDataDay2, setWeatherDataDay2] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [isLoadingWeather, setIsLoadingWeather] = useState(false);
 
@@ -25,12 +27,16 @@ export const WeatherProvider = ({ children }) => {
                 setMunicipalities,
                 selectedMunicip,
                 setSelectedMunicip,
-                weatherData,
-                setWeatherData,
+                weatherDataNow,
+                setWeatherDataNow,
                 isLoading,
                 setIsLoading,
                 isLoadingWeather,
-                setIsLoadingWeather
+                setIsLoadingWeather,
+                weatherDataDay1,
+                setWeatherDataDay1,
+                weatherDataDay2,
+                setWeatherDataDay2
             }}
         >
             {children}

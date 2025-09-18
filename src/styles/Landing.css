@@ -107,12 +107,18 @@ select option[disabled] {
     .container {
         padding: 1rem;
     }
+}
+
+@media (max-width: 360px) {
+    .container {
+        padding: 1rem;
+    }
 
     .form-item {
-        width: 70%;
+        width: 100%;
     }
 
     .button.form-item {
-        width: 70%;
+        width: 100%;
     }
 }

@@ -4,30 +4,33 @@ import WeatherIcon from './components/WeatherIcon.jsx';
 import Header from '../../components/Header.jsx';
 import { useNavigate } from "react-router-dom";
 import Error from '../WeatherInfoPage/components/Error.jsx';
+import NextDaysWeather from './components/NextDaysWeather.jsx';
 
 function WeatherInfo() {
-  const { weatherData, selectedMunicip } = useWeatherContext();
+  const { weatherDataNow, selectedMunicip, weatherDataDay1, weatherDataDay2 } = useWeatherContext();
   const navigate = useNavigate();
 
-  const someError = !weatherData
+  const someError = !weatherDataNow
   const currentHour = new Date().getHours();
 
   // Estado cielo:
-  const skyData = weatherData?.estadoCielo
+  const skyData = weatherDataNow?.estadoCielo
   const currentHourSkyData = skyData?.find(obj => Number(obj.periodo) === currentHour)
   const skyCode = currentHourSkyData?.value
   const skyDescription = currentHourSkyData?.descripcion
 
   // Temperatura:
-  const temperatureData = weatherData.temperatura
+  const temperatureData = weatherDataNow.temperatura
   const currentTemperatureData = temperatureData?.find(obj => Number(obj.periodo) === currentHour)
   const temperature = currentTemperatureData?.value
 
   // Humedad:
-  const humidityData = weatherData?.humedadRelativa
+  const humidityData = weatherDataNow?.humedadRelativa
   const currentDataObj = humidityData?.find(obj => Number(obj.periodo) === currentHour)
   const humidity = currentDataObj?.value
 
+
+  console.log({ weatherDataDay1 })
   return (
     <>
       {someError ? <Error /> : (
@@ -46,6 +49,8 @@ function WeatherInfo() {
             <article className="card-item">Humedad
               <h1>{humidity ? `${humidity}%` : '-'}</h1>
             </article>
+
+            <NextDaysWeather weatherInfoData={weatherDataDay1} />
 
           </section>
 

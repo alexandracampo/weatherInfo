@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useWeatherContext } from "../context/WeatherContext";
 
 export const useWeatherData = () => {
-    const { setMunicipalities, setWeatherData, setIsLoading } = useWeatherContext();
+    const { setMunicipalities, setWeatherDataNow, setIsLoading, setWeatherDataDay1, setWeatherDataDay2 } = useWeatherContext();
     const AEMET_API_KEY = import.meta.env.VITE_AEMET_API_KEY;
 
     // Obtener listado de municipios (almacenados en bbdd en MongoDB) mediante código de provincia:
@@ -39,16 +39,11 @@ export const useWeatherData = () => {
             // Segunda llamada → puede ser JSON o XML
             const dataRes = await fetch(metaData.datos);
             const rawData = await dataRes.text();
+            const prediction = JSON.parse(rawData);
 
-            let prediction;
-            try {
-                prediction = JSON.parse(rawData); // si es JSON válido
-            } catch {
-                prediction = rawData; // si es XML
-            }
-
-            const dataWeather = prediction[0].prediccion.dia[0]
-            setWeatherData(dataWeather)
+            setWeatherDataNow(prediction[0].prediccion.dia[0])
+            setWeatherDataDay1(prediction[0].prediccion.dia[1]);
+            setWeatherDataDay2(prediction[0].prediccion.dia[2]);
         } catch (error) {
             console.error("Error obteniendo la predicción horaria:", error);
             return null;
