@@ -9,7 +9,6 @@ import NextDaysWeather from './components/NextDaysWeather.jsx';
 function WeatherInfo() {
   const { weatherDataNow, selectedMunicip, weatherDataDay1 } = useWeatherContext();
   const navigate = useNavigate();
-  console.log(weatherDataNow)
   const someError = !weatherDataNow
   const currentHour = new Date().getHours();
 
