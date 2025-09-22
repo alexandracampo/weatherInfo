@@ -19,13 +19,13 @@ function NextDaysWeather({ weatherInfoData }) {
     // const dayAfterTomorrowName = days[dayAfterTomorrow.getDay()];
     // const dayAfterTomorrowNumber = dayAfterTomorrow.getDate();
 
-    const tomorrow6 = weatherInfoData?.estadoCielo.find(obj => obj.periodo === '06');
+    const tomorrow6 = weatherInfoData?.estadoCielo?.find(obj => obj.periodo === '06');
     const tomorrowSky6 = tomorrow6?.value
 
-    const tomorrow12 = weatherInfoData?.estadoCielo.find(obj => obj.periodo === '12');
+    const tomorrow12 = weatherInfoData?.estadoCielo?.find(obj => obj.periodo === '12');
     const tomorrowSky12 = tomorrow12?.value
 
-    const tomorrow18 = weatherInfoData?.estadoCielo.find(obj => obj.periodo === '18');
+    const tomorrow18 = weatherInfoData?.estadoCielo?.find(obj => obj.periodo === '18');
     const tomorrowSky18 = tomorrow18?.value
 
     return (

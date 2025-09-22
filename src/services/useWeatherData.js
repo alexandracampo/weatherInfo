@@ -46,7 +46,7 @@ export const useWeatherData = () => {
             setWeatherDataDay2(prediction[0].prediccion.dia[2]);
         } catch (error) {
             console.error("Error obteniendo la predicción horaria:", error);
-            return null;
+            // return null;
         }
     };
 
