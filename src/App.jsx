@@ -5,7 +5,7 @@ import WeatherInfoPage from './pages/WeatherInfoPage/WeatherInfo';
 function App() {
 
   return (
-    <Router>
+    <Router basename="/weatherInfo">
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/weather" element={<WeatherInfoPage />} />
