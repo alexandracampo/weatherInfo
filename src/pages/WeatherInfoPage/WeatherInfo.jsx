@@ -7,9 +7,8 @@ import Error from '../WeatherInfoPage/components/Error.jsx';
 import NextDaysWeather from './components/NextDaysWeather.jsx';
 
 function WeatherInfo() {
-  const { weatherDataNow, selectedMunicip, weatherDataDay1 } = useWeatherContext();
+  const { weatherDataNow, selectedMunicip, weatherDataDay1, errorGettingWeather } = useWeatherContext();
   const navigate = useNavigate();
-  const someError = !weatherDataNow
   const currentHour = new Date().getHours();
 
   // Estado cielo:
@@ -30,30 +29,41 @@ function WeatherInfo() {
 
   return (
     <>
-      {someError ? <Error /> : (
-        <div className="weather-container">
-          <Header title2={selectedMunicip?.name} showTitle2 />
+      {errorGettingWeather ?
+        (
+          <>
+            <Error />
+            <div className='button-back-container'>
+              <button className='button-back btn-error' aria-label="Volver a la página principal para hacer una nueva búsqueda" onClick={() => navigate("/")} >Nueva búsqueda</button>
+            </div>
+          </>
+        )
+        :
+        (
+          <div className="weather-container">
+            <Header title2={selectedMunicip?.name} showTitle2 />
 
-          <section className="weather-card">
-            <article className="card-item">{skyDescription}
-              <WeatherIcon stateSky={skyCode} />
-            </article>
+            <section className="weather-card">
+              <article className="card-item">{skyDescription}
+                <WeatherIcon stateSky={skyCode} />
+              </article>
 
-            <article className="card-item">Temperatura actual
-              <h1>{temperature ? `${temperature}ºC` : '-'}</h1>
-            </article>
+              <article className="card-item">Temperatura actual
+                <h1>{temperature ? `${temperature}ºC` : '-'}</h1>
+              </article>
 
-            <article className="card-item">Humedad
-              <h1>{humidity ? `${humidity}%` : '-'}</h1>
-            </article>
+              <article className="card-item">Humedad
+                <h1>{humidity ? `${humidity}%` : '-'}</h1>
+              </article>
 
-            <NextDaysWeather weatherInfoData={weatherDataDay1} />
+              <NextDaysWeather weatherInfoData={weatherDataDay1} />
 
-          </section>
+            </section>
 
-          <button className='button-weatherinfo' aria-label="Volver a la página principal para hacer una nueva búsqueda" onClick={() => navigate("/")} >Nueva búsqueda</button>
-        </div >
-      )}
+            <button className='button-back' aria-label="Volver a la página principal para hacer una nueva búsqueda" onClick={() => navigate("/")} >Nueva búsqueda</button>
+          </div >
+        )
+      }
 
     </>
 

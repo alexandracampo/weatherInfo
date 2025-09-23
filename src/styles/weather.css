@@ -74,8 +74,18 @@ p {
     width: 7rem;
 }
 
+.button-back-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
 
-.button-weatherinfo {
+.btn-error {
+    margin-top: 3rem;
+}
+
+.button-back {
     font-size: 16px;
     font-weight: 600;
     padding: 12px 20px;
@@ -140,5 +150,12 @@ p {
     .sub-card-item {
         border: none;
         width: 5rem;
+    }
+
+    .button-back {
+        font-size: 12px;
+        font-weight: 600;
+        padding: 8px 18px;
+
     }
 }

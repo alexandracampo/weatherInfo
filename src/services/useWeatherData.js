@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useWeatherContext } from "../context/WeatherContext";
 
 export const useWeatherData = () => {
-    const { setMunicipalities, setWeatherDataNow, setIsLoading, setWeatherDataDay1, setWeatherDataDay2 } = useWeatherContext();
+    const { setMunicipalities, setWeatherDataNow, setIsLoading, setWeatherDataDay1, setWeatherDataDay2, setErrorGettingWeather } = useWeatherContext();
     const AEMET_API_KEY = import.meta.env.VITE_AEMET_API_KEY;
 
     // Obtener listado de municipios (almacenados en bbdd en MongoDB) mediante código de provincia:
@@ -25,12 +25,14 @@ export const useWeatherData = () => {
     // Obtener el tiempo actual por municipios de la api de la AEMET:
     const getMunicipalityWeather = async (ineCode) => {
         try {
+            setErrorGettingWeather(false);
             // Primera llamada → devuelve JSON con URL "datos"
             const res = await fetch(
                 `https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/horaria/${ineCode}?api_key=${AEMET_API_KEY}`
             );
 
             const metaData = await res.json();
+            console.log(metaData);
 
             if (!metaData.datos) {
                 throw new Error("No se pudo obtener la URL de datos de AEMET");
@@ -46,6 +48,7 @@ export const useWeatherData = () => {
             setWeatherDataDay2(prediction[0].prediccion.dia[2]);
         } catch (error) {
             console.error("Error obteniendo la predicción horaria:", error);
+            setErrorGettingWeather(true);
             // return null;
         }
     };

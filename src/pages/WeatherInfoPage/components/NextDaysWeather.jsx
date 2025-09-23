@@ -1,6 +1,4 @@
-import React from 'react'
 import '../../../styles/weather.css';
-import { useWeatherContext } from '../../../context/WeatherContext';
 import WeatherIcon from './WeatherIcon';
 
 
@@ -11,13 +9,7 @@ function NextDaysWeather({ weatherInfoData }) {
     const tomorrow = new Date();
     tomorrow.setDate(today.getDate() + 1);
     const tomorrowName = days[tomorrow.getDay()];
-    const tomorrowNumber = tomorrow.getDate()
-
-    // Si tuviéramos que mostrar info de pasado mañana:
-    // const dayAfterTomorrow = new Date();
-    // dayAfterTomorrow.setDate(today.getDate() + 2);
-    // const dayAfterTomorrowName = days[dayAfterTomorrow.getDay()];
-    // const dayAfterTomorrowNumber = dayAfterTomorrow.getDate();
+    const tomorrowNumber = tomorrow.getDate();
 
     const tomorrow6 = weatherInfoData?.estadoCielo?.find(obj => obj.periodo === '06');
     const tomorrowSky6 = tomorrow6?.value
