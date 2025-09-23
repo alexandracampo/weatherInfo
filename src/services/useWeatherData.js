@@ -32,7 +32,6 @@ export const useWeatherData = () => {
             );
 
             const metaData = await res.json();
-            console.log(metaData);
 
             if (!metaData.datos) {
                 throw new Error("No se pudo obtener la URL de datos de AEMET");
@@ -49,7 +48,6 @@ export const useWeatherData = () => {
         } catch (error) {
             console.error("Error obteniendo la predicción horaria:", error);
             setErrorGettingWeather(true);
-            // return null;
         }
     };
 
