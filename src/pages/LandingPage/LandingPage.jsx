@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import '../../styles/landing.css';
 import Lottie from "lottie-react";
 import loadingAnimation from "../../images/Sandy-loading.json";
-import { provinces } from "./provinces";
+import { provinces } from "../../utils/provinces";
 
 const LandingPage = () => {
     const { getDataMunicipality, getMunicipalityWeather } = useWeatherData();
