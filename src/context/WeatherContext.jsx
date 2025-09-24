@@ -6,7 +6,7 @@ export const WeatherProvider = ({ children }) => {
     const [provinces, setProvinces] = useState(null);
     const [selectedProvince, setSelectedProvince] = useState('');
     const [municipalities, setMunicipalities] = useState([])
-    const [selectedMunicip, setSelectedMunicip] = useState({ // endpoint: [ID] primeros cinco dígitos del campo CODIGOINE
+    const [selectedMunicip, setSelectedMunicip] = useState({
         id: '',
         name: ''
     });
